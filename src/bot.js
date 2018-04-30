@@ -36,9 +36,50 @@ client.on("commandRun", (command, prom, message) => winston.info(`Command ${comm
     member: message.member.id,
     message: message.id,
     content: message.content,
+    event: "commandRun",
     command: command.id,
     guild: message.guild.id,
     channel: message.channel.id
 }))
+
+client.on("commandBlocked", (message, reason) => winston.warn("Command " + message.content + " failed because " + reason, {
+    member: message.member.id,
+    message: message.id,
+    content: message.content,
+    reason: reason,
+    event: "commandBlocked",
+    guild: message.guild.id,
+    channel: message.channel.id
+}))
+
+client.on("commandPrefixChange", (guild, prefix) => 
+    winston.warn("Command prefix in guild " + guild.name + " changed to " + prefix, {
+        guild: guild.id,
+        guildName: guild.name,
+        newPrefix: prefix
+    }))
+
+client.on("message", (message) => {
+    winston.silly("Message recieved: " + message.content, {
+        member: message.member.id,
+        message: message.id,
+        content: message.content,
+        event: "message",
+        guild: message.guild.id,
+        channel: message.channel.id,
+        channelName: message.channel.name,
+        user: message.author.tag
+    })
+})
+
+client.on("guildCreate", (guild) => {
+    winston.info("Joined guild " + guild.name + " (" + guilds.id + ")", {
+        event: "guildCreate",
+        id: guild.id,
+        name: guild.name,
+        members: guild.memberCount
+    })
+})
+
 
 client.login(require("../data/config.json").token);

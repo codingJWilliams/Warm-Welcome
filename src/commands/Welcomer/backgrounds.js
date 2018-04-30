@@ -4,6 +4,8 @@ const Discord = require("discord.js");
 const {Guild, Channel} = Discord;
 const axios = require("axios");
 const album = "CgDf3jq"
+const winston = require("winston")
+
 module.exports = class SetFormatCommand extends commando.Command {
 	constructor(client) {
 		super(client, {
