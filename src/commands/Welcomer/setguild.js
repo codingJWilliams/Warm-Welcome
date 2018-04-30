@@ -29,6 +29,6 @@ module.exports = class SetFormatCommand extends commando.Command {
 	async run(msg, args) {
     msg.guild.settings.set("guildname", args.guild ? args.guild : msg.guild.name)
     msg.react("👌")
-    msg.channel.send(new Discord.RichEmbed().setTitle("Available Backgrounds").setColor(0x5f42f4).setDescription("I successfully set the guild name to `" + (args.guild ? args.guild : msg.guild.name) + "`"))
+    msg.channel.send(new Discord.RichEmbed().setTitle("Set Guild").setColor(0x5f42f4).setDescription("I successfully set the guild name to `" + (args.guild ? args.guild : msg.guild.name) + "`"))
 	}
 };
