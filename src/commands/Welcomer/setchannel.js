@@ -17,26 +17,30 @@ module.exports = class UserInfoCommand extends commando.Command {
 	constructor(client) {
 		super(client, {
 			name: 'setchannel',
-			group: 'welcome',
 			memberName: 'setchannel',
-			description: 'Sets the channel which welcomes will be sent to',
+			description: 'Sets the channel which welcomes will be sent to. Leave channel blank to set to default',
       guildOnly: true,
+      group: "welcomer",
       userPermissions: ['MANAGE_SERVER'],
-      examples: ['setchannel #general', 'setchannel #newpeople'],
+      examples: ['setchannel #general', 'setchannel #newpeople', 'setchannel'],
       args: [
         {
           type: "channel",
           key: "channel",
           label: "channel",
-          prompt: "Which channel do you want welcome messages to go to?"
+          default: "",
+          prompt: ''
         }
       ]
 		});
 	}
 
 	async run(msg, args) {
-    msg.guild.settings.set("channel", args.channel.id)
-    msg.react("👌")
+    var ch = args.channel;
+    if(!ch) ch = determineDefaultChannel(msg.guild)
+    msg.guild.settings.set("channel", ch.id)
+    await msg.react("👌")
+    await msg.channel.send(new Discord.RichEmbed().setTitle("Available Backgrounds").setColor(0x5f42f4).setDescription("I will welcome new members in " + ch))
 	}
 };
 

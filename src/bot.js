@@ -1,7 +1,8 @@
 const Commando = require('discord.js-commando');
 const path = require('path');
 const sqlite = require('sqlite');
-
+const winston = require("winston")
+const logger = require("./logger")
 
 const client = new Commando.Client({
     owner: '193053876692189184',
@@ -16,7 +17,7 @@ client.setProvider(
 client.registry
     // Registers command groups
     .registerGroups([
-        ["welcome", "Commands to welcome users to the server"]
+        ["welcomer", "Welcome configuration"]
     ])
 
     // Registers all built-in groups, commands, and argument types
@@ -24,5 +25,20 @@ client.registry
 
     // Registers all of your commands in the ./commands/ directory
     .registerCommandsIn(path.join(__dirname, 'commands'));
+
+client.on("ready", () => winston.info("Client ready"))
+
+client.on("guildMemberAdd", (member) => {
+    require("./doWelcome")(member)
+})
+
+client.on("commandRun", (command, prom, message) => winston.info(`Command ${command.name} executed with content ${message.content}`, {
+    member: message.member.id,
+    message: message.id,
+    content: message.content,
+    command: command.id,
+    guild: message.guild.id,
+    channel: message.channel.id
+}))
 
 client.login(require("../data/config.json").token);

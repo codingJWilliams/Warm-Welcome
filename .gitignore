@@ -4,7 +4,9 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+aws.json
+config.json
+settings.sqlite3
 # Runtime data
 pids
 *.pid
