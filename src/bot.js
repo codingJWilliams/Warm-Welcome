@@ -61,7 +61,7 @@ client.on("commandPrefixChange", (guild, prefix) =>
 
 client.on("message", (message) => {
     winston.silly("Message recieved: " + message.content, {
-        member: message.member.id,
+        //member: message.member.id,
         message: message.id,
         content: message.content,
         event: "message",
