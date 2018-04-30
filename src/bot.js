@@ -60,9 +60,9 @@ client.on("commandPrefixChange", (guild, prefix) =>
     }))
 
 client.on("message", (message) => {
-    if (!message.guild) winston.info("DM from " + message.author.tag + ": " + message.content)
+    if (!message.guild) return winston.info("DM from " + message.author.tag + ": " + message.content)
     winston.silly("Message recieved: " + message.content, {
-        //member: message.member.id,
+        member: message.member.id,
         message: message.id,
         content: message.content,
         event: "message",
