@@ -19,6 +19,7 @@ module.exports = class SetFormatCommand extends commando.Command {
                 {
                     key: "bgurl",
                     label: "background",
+                    type: "string",
                     prompt: ""
                 }
             ]
