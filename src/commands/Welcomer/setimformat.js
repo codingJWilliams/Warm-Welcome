@@ -28,7 +28,7 @@ module.exports = class SetFormatCommand extends commando.Command {
 	}
 
 	async run(msg, args) {
-    msg.guild.settings.set("format", args.format)
+    msg.guild.settings.set("im_format", args.format)
     msg.react("👌")
     msg.channel.send(new Discord.RichEmbed().setTitle("Available Backgrounds").setColor(0x5f42f4).setDescription("I successfully set the format").addField("Preview", args.format.replace("%person%", "<@" + msg.author.id + ">").replace("%guild%", msg.guild.settings.get("guildname", msg.guild.name))))
 	}
