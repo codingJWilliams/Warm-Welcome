@@ -29,6 +29,7 @@ module.exports = function (memberToWelcome) {
                     new_width: 1000,
                     offset_x: gs("offset_x", 0),
                     offset_y: gs("offset_y", -70),
+                    welcome: gs("im_format", `Welcome %person%\nto %guild%!`.replace(/%person%/g, `<@${memberToWelcome.id}>`).replace(/%guild%/g, memberToWelcome.guild.settings.get("guildname", memberToWelcome.guild.name))),
                     new_height: 500,
                     ava_sqdim: gs("ava_sqdim", 260),
                     text_offset_x: gs("text_offset_x", 0),
