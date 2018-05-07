@@ -23,6 +23,7 @@ module.exports = function (memberToWelcome) {
                 name: memberToWelcome.user.username,
                 avatar: memberToWelcome.user.displayAvatarURL.replace("size=2048", "size=128"),
                 guild: memberToWelcome.guild.settings.get("guildname", memberToWelcome.guild.name),
+                font: memberToWelcome.guild.settings.get("font", undefined),
                 background: memberToWelcome.guild.settings.get("bg", "https://s3.amazonaws.com/random-stuff-voidcrafted/retro-game-background-For-Free-Wallpaper.jpg"),
                 params: {
                     new_width: 1000,
