@@ -24,7 +24,7 @@ module.exports = function (memberToWelcome) {
                 avatar: memberToWelcome.user.displayAvatarURL.replace("size=2048", "size=128"),
                 guild: memberToWelcome.guild.settings.get("guildname", memberToWelcome.guild.name),
                 font: memberToWelcome.guild.settings.get("font", undefined),
-                background: memberToWelcome.guild.settings.get("bg", "https://s3.amazonaws.com/random-stuff-voidcrafted/retro-game-background-For-Free-Wallpaper.jpg"),
+                background: memberToWelcome.guild.settings.get("bg", "https://s3.amazonaws.com/voidcrafted/retro-game-background-For-Free-Wallpaper.jpg"),
                 params: {
                     new_width: 1000,
                     offset_x: gs("offset_x", 0),
