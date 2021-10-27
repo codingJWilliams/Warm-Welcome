@@ -1,14 +1,11 @@
 var winston = require('winston');
 var strftime = require('strftime');
 
-winston.remove(winston.transports.Console);     // remove the default options
-winston.add(winston.transports.Console, {       // and substitute these
-  /**formatter: function (options) { // Return string will be passed to winston.
-    return options.timestamp() + ' ' + options.level.toUpperCase() + " " + options.message );
-  }*/
+winston.remove(winston.transports.Console);
+winston.add(winston.transports.Console, {
   colorize: true,
   level: "silly",
-  label: "[warmwelcome]"
+  label: "[warm welcome]"
 });
 winston.add(winston.transports.File, {
   filename: "../data/bot.log",
